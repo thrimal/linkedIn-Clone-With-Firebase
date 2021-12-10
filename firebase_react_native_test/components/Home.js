@@ -42,8 +42,11 @@ export default class Home extends Component {
               source={require('../assets/man.png')}
             />
             <Text style={styles.userName}>Thrimal Avishka</Text>
+            <Text style={styles.description}>Software Engineer at XDA (Pvt) Ltd</Text>
             <FeatherIcon style={styles.icon} name="more-vertical" color={'#666666'} size={21} />
-            <Text style={styles.txt}>{item.caption}</Text>
+            <Text style={styles.caption}>{item.caption}</Text>
+
+
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ flex: 1, height: 1.3, backgroundColor: '#D3D3D3' }} />
             </View>
@@ -56,20 +59,57 @@ export default class Home extends Component {
               <View style={{ flex: 1, height: 1.3, backgroundColor: '#D3D3D3' }} />
             </View>
             <AwesomeIcon
-              style={styles.like} name="thumbs-up" color={'#666666'} size={21}
+              style={{
+                top: 437,
+                position: 'absolute',
+                marginBottom: 5,
+                left: 15
+              }} name="heart" color={'red'} size={15}
+            />
+            <AwesomeIcon
+              style={{
+                top: 437,
+                position: 'absolute',
+                marginBottom: 5,
+                left: 35
+              }} name="thumbs-up" color={'blue'} size={15}
+            />
+             <AwesomeIcon
+              style={{
+                top: 437,
+                position: 'absolute',
+                marginBottom: 5,
+                left: 55
+              }} name="sign-language" color={'green'} size={15}
+            />
+            <Text style={{
+              color: "grey",
+              left: 80,
+              fontSize: 13,
+              top: 437,
+              position:'absolute'
+            }}>20</Text>
+            <Text style={styles.bottomDescription}>20 comments</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ flex: 1, height: 1.3, backgroundColor: '#D3D3D3' }} />
+            </View>
+            <View>
+            <AwesomeIcon
+              style={styles.like} name="thumbs-up" color={'#666666'} size={25}
             />
             <AwesomeIcon
               style={styles.comment}
-              name="comment" color={'#666666'} size={21}
+              name="comment" color={'#666666'} size={25}
             />
             <AwesomeIcon
               style={styles.share}
-              name="share-square" color={'#666666'} size={21}
+              name="share" color={'#666666'} size={25}
             />
             <AwesomeIcon
               style={styles.send}
-              name="paper-plane" color={'#666666'} size={21}
+              name="paper-plane" color={'#666666'} size={25}
             />
+            </View>
           </View>
         </View>
       </SafeAreaView>
@@ -102,14 +142,14 @@ const styles = StyleSheet.create({
   },
   view: {
     // marginTop: 1,
-    height: 470,
+    height: 520,
     borderRadius: 30,
     shadowColor: '#0000',
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.5,
     shadowRadius: 30,
     elevation: 3,
-    
+
   },
   item: {
     marginVertical: 3,
@@ -121,26 +161,25 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     width: 40,
     height: 40,
-    borderRadius:100,
+    borderRadius: 100,
   },
   like: {
-    marginTop: 10,
-    marginLeft: 30,
-
+    marginTop: 15,
+    marginLeft: 40,
   },
   comment: {
-    marginTop: -20,
-    marginLeft: 135,
+    marginTop: -25,
+    marginLeft: 140,
 
   },
   share: {
-    marginTop: -23,
-    marginLeft: 250,
+    marginTop: -27,
+    marginLeft: 240,
 
   },
   send: {
-    marginTop: -23,
-    marginLeft: 350,
+    marginTop: -27,
+    marginLeft: 340,
 
   },
   icon: {
@@ -158,15 +197,29 @@ const styles = StyleSheet.create({
   img: {
     // flex: 1,
     width: '100%',
-    height: '70%',
+    height: '65%',
     resizeMode: 'contain',
   },
-  txt: {
-    marginLeft: 60,
+  caption: {
+    marginLeft: 20,
     marginRight: 10,
     marginTop: 20,
     marginBottom: 10,
-    fontSize: 15,
+    fontSize: 18,
     color: '#202124',
   },
+  description: {
+    color: "grey",
+    position: 'absolute',
+    marginTop: 35,
+    left: 60,
+    fontSize: 13
+  },
+  bottomDescription: {
+    color: "grey",
+    left: 320,
+    fontSize: 13,
+    marginBottom: 8,
+    top: 3
+  }
 })
