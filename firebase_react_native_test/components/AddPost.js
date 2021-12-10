@@ -6,7 +6,7 @@ import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import { KeyboardAvoidingView } from 'react-native';
 
-export default class Upload extends Component {
+export default class AddPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -82,18 +82,18 @@ export default class Upload extends Component {
             <KeyboardAvoidingView>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <TextInput
-                        label="type here..."
+                        label="Share your thoughts. Add photos or hashtags..."
                         value={this.state.caption}
                         onChangeText={text => this.setState(
                             { caption: text }
                         )}
-                        style={{ width: '100%', height: 50, marginTop: 30, borderRadius: 30 }}
+                        style={{ width: '100%', height: 50,  borderRadius: 30,position:'absolute',top:10 }}
                     />
-                    <Image source={img} style={{ width: 400, height: 400, resizeMode: 'contain', borderColor: "red" }} />
-                    <Button icon="image-search" style={{ width: 150, marginTop: 20, borderRadius: 30 }} mode="contained" onPress={this.getimageFromGallery}>
+                    <Image source={img} style={{ width: 400, height: 400, resizeMode: 'contain', borderColor: "red",top:60 }} />
+                    <Button icon="image-search" style={{ width: 150, marginTop: 20, borderRadius: 30,top:50  }} mode="contained" onPress={this.getimageFromGallery}>
                         Select Image
                     </Button>
-                    <Button icon="send" style={{ width: 100, marginTop: 10, borderRadius: 30 }} mode="contained" onPress={this.UploadImage}>
+                    <Button icon="send" style={{ width: 100, marginTop: 10, borderRadius: 30,top:50  }} mode="contained" onPress={this.UploadImage}>
                         Post
                      </Button>
                 </View>

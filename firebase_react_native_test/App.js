@@ -4,6 +4,7 @@ import { } from 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native';
 import Stacks from './navigations/Stacks'
 import Home from './components/Home';
+import Jobs from './components/Jobs';
 
 export default class App extends Component {
 
@@ -17,8 +18,7 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stacks />
-
-        {/* <Home/> */}
+        {/* <Jobs/> */}
       </NavigationContainer>
     )
   }

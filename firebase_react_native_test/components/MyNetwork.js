@@ -28,7 +28,7 @@ export default class MyNetwork extends Component {
 
                         <View style={styles.headerContainer}>
                             <Text style={{ color: 'black', fontSize: 18, top: 15, left: 10 }}> Invitations </Text>
-                            <Text style={{ position: 'absolute', color: 'blue', left: 350, top: 15, fontSize: 15 }}>See All</Text>
+                            <Text style={{ position: 'absolute', color: 'blue', left: 330, top: 15, fontSize: 15 }}>See All(0)</Text>
                         </View>
                         <Text style={styles.text}> People you may know </Text>
                         <View style={styles.notificationContainer}>

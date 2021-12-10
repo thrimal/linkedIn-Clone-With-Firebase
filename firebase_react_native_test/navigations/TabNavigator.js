@@ -5,9 +5,9 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 import Home from '../components/Home';
 import AllCustomers from '../components/AllCustomers';
 import Notification from '../components/Notification';
-import FileUpload from '../components/FileUpload';
-import Firestore from '../components/Firestore';
 import MyNetwork from '../components/MyNetwork';
+import AddPost from '../components/AddPost';
+import Jobs from '../components/Jobs';
 
 
 const Tab = createBottomTabNavigator();
@@ -40,7 +40,7 @@ export default class TabNavigator extends Component {
             <AwesomeIcon name="user-friends" color={color} size={size} />
           ),
         }} />
-        <Tab.Screen name="Add Post" component={FileUpload} options={{
+        <Tab.Screen name="Add Post" component={AddPost} options={{
           tabBarLabel: 'Add Post', headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <AwesomeIcon name="plus-square" color={color} size={size} />
@@ -52,8 +52,8 @@ export default class TabNavigator extends Component {
             <AwesomeIcon name="bell" color={color} size={size} />
           ),
         }} />
-        <Tab.Screen name="All Users" component={AllCustomers} options={{
-          tabBarLabel: 'List', headerShown: true,
+        <Tab.Screen name="Jobs" component={Jobs} options={{
+          tabBarLabel: 'Jobs', headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <AwesomeIcon name="shopping-bag" color={color} size={size} />
           ),
