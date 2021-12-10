@@ -3,7 +3,6 @@ import { View, Text, Image, StyleSheet, SafeAreaView, FlatList } from 'react-nat
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import firestore from '@react-native-firebase/firestore';
-import { Searchbar, Button } from 'react-native-paper';
 
 export default class Home extends Component {
   constructor(props) {
@@ -42,7 +41,7 @@ export default class Home extends Component {
               style={styles.userImg}
               source={require('../assets/man.png')}
             />
-            <Text style={styles.userName}>User</Text>
+            <Text style={styles.userName}>Thrimal Avishka</Text>
             <FeatherIcon style={styles.icon} name="more-vertical" color={'#666666'} size={21} />
             <Text style={styles.txt}>{item.caption}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>

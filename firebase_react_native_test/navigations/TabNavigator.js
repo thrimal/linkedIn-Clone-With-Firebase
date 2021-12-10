@@ -7,6 +7,7 @@ import AllCustomers from '../components/AllCustomers';
 import Notification from '../components/Notification';
 import FileUpload from '../components/FileUpload';
 import Firestore from '../components/Firestore';
+import MyNetwork from '../components/MyNetwork';
 
 
 const Tab = createBottomTabNavigator();
@@ -33,7 +34,7 @@ export default class TabNavigator extends Component {
             <AwesomeIcon name="home" color={color} size={size} />
           ),
         }} />
-        <Tab.Screen name="Add Users" component={Firestore} options={{
+        <Tab.Screen name="My Network" component={MyNetwork} options={{
           tabBarLabel: 'My Network', headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <AwesomeIcon name="user-friends" color={color} size={size} />
@@ -54,7 +55,7 @@ export default class TabNavigator extends Component {
         <Tab.Screen name="All Users" component={AllCustomers} options={{
           tabBarLabel: 'List', headerShown: true,
           tabBarIcon: ({ color, size }) => (
-            <AwesomeIcon name="list" color={color} size={size} />
+            <AwesomeIcon name="shopping-bag" color={color} size={size} />
           ),
         }}
         />

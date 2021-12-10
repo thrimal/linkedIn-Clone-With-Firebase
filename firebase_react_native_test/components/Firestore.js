@@ -14,7 +14,8 @@ export default class Firestore extends Component {
     }
 
     saveCustomer = () => {
-        firestore()
+        if(this.state.name != '' && this.state.address != '' && this.state.salary != ''){
+            firestore()
             .collection('customers')
             .add({
                 name: this.state.name,
@@ -29,6 +30,10 @@ export default class Firestore extends Component {
                     salary: ''
                 });
             });
+        }else{
+            alert("Fields are Empty...")
+        }
+        
     }
 
     render() {

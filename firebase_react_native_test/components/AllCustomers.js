@@ -46,9 +46,6 @@ export default class AllCustomers extends Component {
                             <Text style={styles.text}>Salary: {item.salary}</Text>
                         </View>
                     )}
-                    keyExtractor={(item) => {
-                        item.key
-                    }}
                 />
             </View >
         );
