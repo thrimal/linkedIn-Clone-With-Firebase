@@ -34,7 +34,8 @@ export default class SignIn extends Component {
         // Sign-in the user with the credential
         const user = auth().signInWithCredential(googleCredential);
         navigate('TabNavigator', { name: 'TabNavigator' })
-        console.log(user);
+        console.log('User account created & signed in!');
+        console.log((await user).user);
     }
 
     onFacebookButtonPress = async () => {
@@ -89,7 +90,6 @@ export default class SignIn extends Component {
                     <Image style={styles.img} source={require('../assets/linkedin.png')} />
                 </View>
 
-                <Text style={styles.label}> Sign In </Text>
                 <TextInput
                     label="Email"
                     value={this.state.email}
@@ -102,6 +102,7 @@ export default class SignIn extends Component {
                 <TextInput
                     label="Password"
                     value={this.state.password}
+                    secureTextEntry={true}
                     onChangeText={text => this.setState(
                         { password: text }
                     )}
@@ -111,18 +112,25 @@ export default class SignIn extends Component {
                 <Button mode="contained" onPress={this.userLogin} style={styles.btnSignIn}>
                     Sign In
                 </Button>
-                <Button icon="step-forward" mode="contained" onPress={() => navigate('SignUp', { name: 'SignUp' })} style={styles.btnSignUp}>
-                    SignUp
+
+                <Text style={styles.description}>Forgot password ?</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <View style={{ flex: 1, height: 1.3, backgroundColor: '#D3D3D3', top: 150 }} />
+                </View>
+                <Button icon="step-forward" mode="outlined" onPress={() => navigate('SignUp', { name: 'SignUp' })} style={styles.btnSignUp}>
+                    Join Linkedin
                 </Button>
-                <GoogleSigninButton
-                    style={{ width: 200, height: 50, borderRadius: 30, color: GoogleSigninButton.Color.Dark }}
+                {/* <GoogleSigninButton
+                    style={{ width: 300, height: 50, borderRadius: 30, color: GoogleSigninButton.Color.Dark }}
                     // size={GoogleSigninButton.Size.Wide}
                     // color={GoogleSigninButton.Color.Dark}
                     onPress={this.onGoogleButtonPress}
                     disabled={this.state.isSigninInProgress}
-                />
+                /> */}
+                <SocialIcon title='Sign In With Google' button type='google' style={{ width: 300, height: 50, position: 'absolute', top: 420, }}
+                    onPress={this.onGoogleButtonPress} />
 
-                <SocialIcon title='Sign In With Facebook' button type='facebook' style={{ width: 200, height: 50 }}
+                <SocialIcon title='Sign In With Facebook' button type='facebook' style={{ width: 300, height: 50, position: 'absolute', top: 480, }}
                     onPress={this.onFacebookButtonPress} />
 
                 {/* <LoginButton
@@ -149,18 +157,18 @@ export default class SignIn extends Component {
 
 const styles = StyleSheet.create({
     btnSignIn: {
-        marginTop: 20,
-        marginBottom: 10,
-        right: 60,
-        position: 'relative',
-        borderRadius: 30
+        borderRadius: 30,
+        width: 300,
+        height: 50,
+        position: 'absolute',
+        top: 280,
     },
     btnSignUp: {
-        marginTop: 374,
-        marginBottom: 10,
-        right: 102,
         position: 'absolute',
-        borderRadius: 30
+        borderRadius: 30,
+        height: 50,
+        width: 300,
+        top: 550,
     },
     input: {
         width: 400,
@@ -181,5 +189,11 @@ const styles = StyleSheet.create({
         height: 45,
         width: 45,
         marginTop: 50,
-    }
+    },
+    description: {
+        color: "blue",
+        position: 'absolute',
+        fontSize: 15,
+        top:350
+      },
 })

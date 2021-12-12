@@ -3,9 +3,9 @@ import { Text, View } from 'react-native'
 import { } from 'react-native-gesture-handler'
 import { createStackNavigator } from '@react-navigation/stack';
 import SignIn from '../components/SignIn';
-import SignUp from '../components/SignUp';
 import TabNavigator from './TabNavigator';
 import Splash from '../screens/Splash';
+import SignUp from '../components/SignUp';
 
 const Stack = createStackNavigator();
 

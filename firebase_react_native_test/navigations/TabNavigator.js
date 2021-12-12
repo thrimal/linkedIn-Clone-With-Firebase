@@ -25,35 +25,41 @@ export default class TabNavigator extends Component {
         screenOptions={{
           tabBarInactiveTintColor:'gray',
           tabBarActiveTintColor:'black',
-          tabBarStyle:{borderRadius:5},
+          tabBarStyle: [
+            {
+              "display": "flex",
+              // "backgroundColor": "#FFFFFF"
+            },
+            null
+          ]
         }}
       >
         <Tab.Screen name="Home" component={Home} options={{
-          tabBarLabel: 'Home', headerShown: true,
+          tabBarLabel: 'Home', headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <AwesomeIcon name="home" color={color} size={size} />
           ),
         }} />
         <Tab.Screen name="My Network" component={MyNetwork} options={{
-          tabBarLabel: 'My Network', headerShown: true,
+          tabBarLabel: 'My Network', headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <AwesomeIcon name="user-friends" color={color} size={size} />
           ),
         }} />
         <Tab.Screen name="Add Post" component={AddPost} options={{
-          tabBarLabel: 'Add Post', headerShown: true,
+          tabBarLabel: 'Add Post', headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <AwesomeIcon name="plus-square" color={color} size={size} />
           ),
         }} />
         <Tab.Screen name="Notification" component={Notification} options={{
-          tabBarLabel: 'Notification', headerShown: true,
+          tabBarLabel: 'Notification', headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <AwesomeIcon name="bell" color={color} size={size} />
           ),
         }} />
         <Tab.Screen name="Jobs" component={Jobs} options={{
-          tabBarLabel: 'Jobs', headerShown: true,
+          tabBarLabel: 'Jobs', headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <AwesomeIcon name="shopping-bag" color={color} size={size} />
           ),

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import { Searchbar, Button } from 'react-native-paper';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
+import auth from '@react-native-firebase/auth';
 
+
+const profilePath='https://api.samsungcloud.com/data/v2/com.samsung.account.profile_image/snv?s=gc3ixQItXVGh81WZWJYZN2BijFl396SlCuuZQMLrhnk58j6HFJ3RtmzdoqPFhlBDVh9XX8qOXUh0ZUyYOf8uXXygTeuGMIEUi2vsRyCRiCpJBoXqqKFgcnTdif1KuHyJv8-a3TWvj3OUVjORCbAvbtL5jXrBqUPF1427SfpNYMB_9g3DF9zBrVVGX_95XkcNjHV9UbvbWe0ieM18EV4hAEXKlvLg_csvfN2JROi9bJv8Orooeo6OWrjM4Dx221gWAJtT26hfwNPnnzIOWx7YGw&v=1356990136'
 export default class Jobs extends Component {
     constructor(props) {
         super(props);
@@ -10,11 +13,40 @@ export default class Jobs extends Component {
         };
     }
 
+    onPressBtnSignOut = async () => {
+        try{
+        auth()
+          .signOut()
+          .then(
+            () => 
+            this.props.navigation.navigate('SignIn')
+            // Alert.alert('Loged Out'),
+          );
+        } catch (e) {
+          console.log(e);
+        }
+      };
+
     render() {
+        const pp={uri:profilePath}
         return (
             <SafeAreaView style={styles.container}>
                 <AwesomeIcon style={styles.icon1} name="comment-dots" color={'#666666'} size={30} />
-                <ScrollView>
+                <View style={{ width: '100%', backgroundColor: 'white', height: 50,marginTop:10 }}>
+                    <Image
+                        style={styles.hUsrImg}
+                        source={pp}
+                    />
+
+                    <Searchbar
+                        style={styles.searchbar}
+                        placeholder="Search"
+                        onChangeText={this.onChangeSearch}
+                        value={this.state.searchQuery}
+                    />
+                    <AwesomeIcon style={{ position: 'absolute', left: 350, top: 10 }} name="comment-dots" color={'#666666'} size={25} />
+                </View>
+                <ScrollView style={{marginBottom:0}}>
 
                     <View style={styles.header}>
                         <TouchableOpacity>
@@ -30,7 +62,7 @@ export default class Jobs extends Component {
                             source={require('../assets/job.jpg')}
                         />
                         <Text style={styles.txt4}>Get notified when new jobs match your preferd title and location</Text>
-                        <Button style={styles.btn1}>
+                        <Button style={styles.btn1} onPress={this.onPressBtnSignOut}>
                             <Text style={styles.txt5}>SIGN OUT</Text>
                         </Button>
                     </View>
@@ -93,7 +125,7 @@ const styles = StyleSheet.create({
         marginTop: 13
     },
     header: {
-        marginTop: 18,
+        marginTop: 10,
         backgroundColor: '#FFFFFF',
         height: 55
     },
@@ -150,23 +182,23 @@ const styles = StyleSheet.create({
         height: 50,
         marginTop: 25,
         marginLeft: 10,
-        top:-8
+        top: -8
     },
     txt6: {
-        marginLeft: 70,
+        marginLeft: 80,
         marginTop: -60,
         fontSize: 17,
         color: '#202124',
         fontWeight: 'bold'
     },
     txt7: {
-        marginLeft: 70,
+        marginLeft: 80,
         // marginTop:-60,
         fontSize: 17,
         color: 'gray',
     },
     txt8: {
-        marginLeft: 70,
+        marginLeft: 80,
         fontSize: 13,
         color: 'grey',
     },
@@ -175,7 +207,7 @@ const styles = StyleSheet.create({
         height: 15,
     },
     txt9: {
-        marginLeft: 70,
+        marginLeft: 80,
         fontSize: 11,
         color: 'grey',
     },
@@ -184,7 +216,21 @@ const styles = StyleSheet.create({
         color: 'grey'
     },
     icon2: {
-        marginLeft: 335,
+        marginLeft: 350,
         marginTop: -80
+    },
+    searchbar: {
+        position: 'absolute',
+        width: 200,
+        left: 90,
+        height: 40,
+        top: 5
+    },
+    hUsrImg: {
+        marginTop: 10,
+        marginLeft: 15,
+        width: 30,
+        height: 30,
+        borderRadius: 100,
     }
 })

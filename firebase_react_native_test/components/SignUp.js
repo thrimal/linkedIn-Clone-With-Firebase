@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import { KeyboardAvoidingView } from 'react-native';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { SocialIcon } from 'react-native-elements';
+
+GoogleSignin.configure({
+    webClientId: '749647949105-uensqqlq3u3q9to8og5smhosiuovo0na.apps.googleusercontent.com',
+});
 
 export default class SignUp extends Component {
     constructor(props) {
@@ -23,6 +29,7 @@ export default class SignUp extends Component {
                         displayName: this.state.userName
                     })
                     console.log('User account created & signed up!');
+                    navigate('TabNavigator', { name: 'TabNavigator' })
                 })
                 .catch(error => {
                     if (error.code === 'auth/email-already-in-use') {
@@ -40,6 +47,21 @@ export default class SignUp extends Component {
         }
     }
 
+    onGoogleButtonPress = async () => {
+        const { navigate } = this.props.navigation;
+        // Get the users ID token
+        const { idToken } = await GoogleSignin.signIn();
+
+        // Create a Google credential with the token
+        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+        // Sign-in the user with the credential
+        const user = auth().signInWithCredential(googleCredential);
+        navigate('TabNavigator', { name: 'TabNavigator' })
+        console.log('User account created & signed in!');
+        console.log((await user).user);
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -47,7 +69,7 @@ export default class SignUp extends Component {
                 <View>
                     <Image style={styles.img} source={require('../assets/linkedin.png')} />
                 </View>
-                <Text style={styles.label}> SignUp </Text>
+                <Text style={styles.label}> Join LinkedIn Now </Text>
                 <TextInput
                     label="Email"
                     value={this.state.email}
@@ -75,12 +97,21 @@ export default class SignUp extends Component {
                     style={styles.input}
                 />
 
-                <Button mode="contained" onPress={this.registerUser} style={styles.btn}>
-                    SignUp
+                <Button mode="contained" onPress={this.registerUser} style={styles.btnSignUp}>
+                    Continue
                  </Button>
-                <Button icon="step-backward"  mode="contained" onPress={() => navigate('SignIn', { name: 'SignIn' })} style={styles.btn}>
-                     SignIn
-                 </Button>
+                {/* <Button icon="step-backward" mode="contained" onPress={() => navigate('SignIn', { name: 'SignIn' })} style={styles.btnSignIn}>
+                    SignIn
+                 </Button> */}
+                <SocialIcon title='Sign In With Google' button type='google' style={{ width: 300, height: 50, position: 'absolute', top: 500, }}
+                    onPress={this.onGoogleButtonPress} />
+
+                <TouchableOpacity 
+                    onPressOut={() => navigate('SignIn', { name: 'SignIn' })}
+                >
+                    <Text style={{color:'black',fontSize:15,top:170,right:30}}> Already have an account ?</Text>
+                    <Text style={{color:'blue',fontSize:16,top:150,left:140}}> Sign in</Text>
+                </TouchableOpacity>
             </KeyboardAvoidingView>
         );
     }
@@ -104,12 +135,28 @@ const styles = StyleSheet.create({
     label: {
         marginBottom: 30,
         marginTop: 10,
-        fontSize: 50,
+        fontSize: 30,
         color: 'black'
     },
     img: {
         height: 45,
         width: 45,
         marginTop: 50,
-    }
+    },
+    btnSignIn: {
+        borderRadius: 30,
+        width: 300,
+        height: 50,
+        position: 'absolute',
+        top: 500,
+        backgroundColor: '#0A66C2',
+    },
+    btnSignUp: {
+        position: 'absolute',
+        borderRadius: 30,
+        height: 50,
+        width: 300,
+        top: 440,
+        backgroundColor: '#0A66C2',
+    },
 })

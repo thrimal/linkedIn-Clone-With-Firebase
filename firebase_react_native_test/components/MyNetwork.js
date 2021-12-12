@@ -3,8 +3,10 @@ import { ScrollView } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { View, Text, SafeAreaView, Image } from 'react-native';
 import { Button } from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 
-
+const profilePath='https://api.samsungcloud.com/data/v2/com.samsung.account.profile_image/snv?s=gc3ixQItXVGh81WZWJYZN2BijFl396SlCuuZQMLrhnk58j6HFJ3RtmzdoqPFhlBDVh9XX8qOXUh0ZUyYOf8uXXygTeuGMIEUi2vsRyCRiCpJBoXqqKFgcnTdif1KuHyJv8-a3TWvj3OUVjORCbAvbtL5jXrBqUPF1427SfpNYMB_9g3DF9zBrVVGX_95XkcNjHV9UbvbWe0ieM18EV4hAEXKlvLg_csvfN2JROi9bJv8Orooeo6OWrjM4Dx221gWAJtT26hfwNPnnzIOWx7YGw&v=1356990136'
 export default class MyNetwork extends Component {
     constructor(props) {
         super(props);
@@ -21,59 +23,73 @@ export default class MyNetwork extends Component {
     }
 
     render() {
+        const pp={uri:profilePath}
         return (
             <SafeAreaView>
-                <ScrollView>
-                    <View style={styles.mainContainer}>
+                 <View style={{ width: '100%', backgroundColor: 'white', height: 50 }}>
+                            <Image
+                                style={styles.hUsrImg}
+                                source={pp}
+                            />
 
+                            <Searchbar
+                                style={styles.searchbar}
+                                placeholder="Search"
+                                onChangeText={this.onChangeSearch}
+                                value={this.state.searchQuery}
+                            />
+                            <AwesomeIcon style={{ position: 'absolute', left: 350, top: 10 }} name="comment-dots" color={'#666666'} size={25} />
+                        </View>
+                <ScrollView style={{marginBottom:50}}>
+                    <View style={styles.mainContainer}>
                         <View style={styles.headerContainer}>
                             <Text style={{ color: 'black', fontSize: 18, top: 15, left: 10 }}> Invitations </Text>
                             <Text style={{ position: 'absolute', color: 'blue', left: 330, top: 15, fontSize: 15 }}>See All(0)</Text>
                         </View>
                         <Text style={styles.text}> People you may know </Text>
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/man.png')} />
-                            <Text style={styles.userName}>Lahiru Kumara</Text>
-                            <Text style={styles.description}>Software Engineer at XDA (Pvt) Ltd</Text>
+                            <Image style={styles.userImage} source={require('../assets/man1.png')} />
+                            <Text style={styles.userName}>Dan</Text>
+                            <Text style={styles.description}>Software Engineer at Microsoft (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
                             <Button style={styles.removeBtn} mode='outlined' onPress={this.onRemoveBtnPressed}>Remove</Button>
                         </View>
 
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/man.png')} />
-                            <Text style={styles.userName}>Thilini</Text>
+                            <Image style={styles.userImage} source={require('../assets/girl.png')} />
+                            <Text style={styles.userName}>Sara</Text>
                             <Text style={styles.description}>HR at XDA (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
                             <Button style={styles.removeBtn} mode='outlined' onPress={this.onRemoveBtnPressed}>Remove</Button>
                         </View>
 
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/man.png')} />
-                            <Text style={styles.userName}>Dilshan</Text>
+                            <Image style={styles.userImage} source={require('../assets/man2.png')} />
+                            <Text style={styles.userName}>Jhon</Text>
                             <Text style={styles.description}>Associate Software Engineer at XDA (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
                             <Button style={styles.removeBtn} mode='outlined' onPress={this.onRemoveBtnPressed}>Remove</Button>
                         </View>
 
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/man.png')} />
-                            <Text style={styles.userName}>Harshana</Text>
+                            <Image style={styles.userImage} source={require('../assets/girl2.png')} />
+                            <Text style={styles.userName}>Kara</Text>
+                            <Text style={styles.description}>Software Engineer at Microsoft (Pvt) Ltd</Text>
+                            <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
+                            <Button style={styles.removeBtn} mode='outlined' onPress={this.onRemoveBtnPressed}>Remove</Button>
+                        </View>
+
+                        <View style={styles.notificationContainer}>
+                            <Image style={styles.userImage} source={require('../assets/girl3.png')} />
+                            <Text style={styles.userName}>Diana</Text>
                             <Text style={styles.description}>Software Engineer at XDA (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
                             <Button style={styles.removeBtn} mode='outlined' onPress={this.onRemoveBtnPressed}>Remove</Button>
                         </View>
 
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/man.png')} />
-                            <Text style={styles.userName}>Dilan</Text>
-                            <Text style={styles.description}>Software Engineer at XDA (Pvt) Ltd</Text>
-                            <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
-                            <Button style={styles.removeBtn} mode='outlined' onPress={this.onRemoveBtnPressed}>Remove</Button>
-                        </View>
-
-                        <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/man.png')} />
-                            <Text style={styles.userName}>Tharindu</Text>
+                            <Image style={styles.userImage} source={require('../assets/man3.png')} />
+                            <Text style={styles.userName}>Tony</Text>
                             <Text style={styles.description}>Software Engineer at XDA (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
                             <Button style={styles.removeBtn} mode='outlined' onPress={this.onRemoveBtnPressed}>Remove</Button>
@@ -145,7 +161,7 @@ const styles = StyleSheet.create({
         width: 100,
         top: 30,
         left: 80,
-        backgroundColor: '#04a2f0'
+        backgroundColor: '#0A66C2',
     },
     removeBtn: {
         marginTop: -36,
@@ -154,5 +170,19 @@ const styles = StyleSheet.create({
         top: 30,
         left: 190,
         c: 'gray'
-    }
+    },
+    searchbar:{
+        position:'absolute',
+        width:200,
+        left:90,
+        height:40,
+        top:5
+      },
+      hUsrImg:{
+        marginTop: 10,
+        marginLeft: 15,
+        width: 30,
+        height: 30,
+        borderRadius: 100,
+      }
 })

@@ -3,7 +3,9 @@ import { View, Text, Image, StyleSheet, SafeAreaView, FlatList } from 'react-nat
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import firestore from '@react-native-firebase/firestore';
+import { Searchbar } from 'react-native-paper';
 
+const profilePath='https://api.samsungcloud.com/data/v2/com.samsung.account.profile_image/snv?s=gc3ixQItXVGh81WZWJYZN2BijFl396SlCuuZQMLrhnk58j6HFJ3RtmzdoqPFhlBDVh9XX8qOXUh0ZUyYOf8uXXygTeuGMIEUi2vsRyCRiCpJBoXqqKFgcnTdif1KuHyJv8-a3TWvj3OUVjORCbAvbtL5jXrBqUPF1427SfpNYMB_9g3DF9zBrVVGX_95XkcNjHV9UbvbWe0ieM18EV4hAEXKlvLg_csvfN2JROi9bJv8Orooeo6OWrjM4Dx221gWAJtT26hfwNPnnzIOWx7YGw&v=1356990136'
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +24,7 @@ export default class Home extends Component {
           urls.push({
             url: documentSnapshot.data().url,
             caption: documentSnapshot.data().caption,
+            date:documentSnapshot.data().date
           });
         });
 
@@ -33,16 +36,18 @@ export default class Home extends Component {
 
   renderItem = ({ item, index }) => {
     const img = { uri: item.url };
+    const pp={uri:profilePath}
     return (
       <SafeAreaView>
         <View style={styles.item}>
           <View style={styles.view}>
             <Image
               style={styles.userImg}
-              source={require('../assets/man.png')}
+              source={pp}
             />
             <Text style={styles.userName}>Thrimal Avishka</Text>
             <Text style={styles.description}>Software Engineer at XDA (Pvt) Ltd</Text>
+            <Text style={styles.date}>{item.date}</Text>
             <FeatherIcon style={styles.icon} name="more-vertical" color={'#666666'} size={21} />
             <Text style={styles.caption}>{item.caption}</Text>
 
@@ -60,7 +65,7 @@ export default class Home extends Component {
             </View>
             <AwesomeIcon
               style={{
-                top: 437,
+                top: 447,
                 position: 'absolute',
                 marginBottom: 5,
                 left: 15
@@ -68,7 +73,7 @@ export default class Home extends Component {
             />
             <AwesomeIcon
               style={{
-                top: 437,
+                top: 447,
                 position: 'absolute',
                 marginBottom: 5,
                 left: 35
@@ -76,7 +81,7 @@ export default class Home extends Component {
             />
              <AwesomeIcon
               style={{
-                top: 437,
+                top: 447,
                 position: 'absolute',
                 marginBottom: 5,
                 left: 55
@@ -86,7 +91,7 @@ export default class Home extends Component {
               color: "grey",
               left: 80,
               fontSize: 13,
-              top: 437,
+              top: 447,
               position:'absolute'
             }}>20</Text>
             <Text style={styles.bottomDescription}>20 comments</Text>
@@ -117,18 +122,28 @@ export default class Home extends Component {
   }
 
   render() {
+    const img={uri:profilePath}
     return (
       <SafeAreaView>
-        {/* <Searchbar
-        // style={{position:'relative'}}
+        <View style={{width:'100%',backgroundColor:'white',height:50}}>
+        <Image
+        style={styles.hUsrImg}
+        source={img} 
+        />
+       
+        <Searchbar
+        style={styles.searchbar}
         placeholder="Search"
         onChangeText={this.onChangeSearch}
         value={this.state.searchQuery} 
-        />  */}
+        />   
+        <AwesomeIcon style={{position:'absolute',left:350,top:10}}  name="comment-dots"  color={'#666666'} size={25} />
+        </View>
         <FlatList
           data={this.state.data}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}
+          style={{marginBottom:50}}
         />
       </SafeAreaView>
     );
@@ -139,6 +154,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor:'white'
+    position:'relative'
   },
   view: {
     // marginTop: 1,
@@ -149,11 +165,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 30,
     elevation: 3,
+    
 
   },
   item: {
     marginVertical: 3,
     borderRadius: 30,
+    position:'relative'
     // marginBottom:5
   },
   userImg: {
@@ -164,7 +182,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   like: {
-    marginTop: 15,
+    marginTop: 10,
     marginLeft: 40,
   },
   comment: {
@@ -203,7 +221,7 @@ const styles = StyleSheet.create({
   caption: {
     marginLeft: 20,
     marginRight: 10,
-    marginTop: 20,
+    marginTop: 30,
     marginBottom: 10,
     fontSize: 18,
     color: '#202124',
@@ -221,5 +239,26 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginBottom: 8,
     top: 3
+  },
+  date:{
+      left:60,
+      marginTop:50,
+      fontSize:12,
+      color:'#666666',
+      position:'absolute'
+  },
+  searchbar:{
+    position:'absolute',
+    width:200,
+    left:90,
+    height:40,
+    top:5
+  },
+  hUsrImg:{
+    marginTop: 10,
+    marginLeft: 15,
+    width: 30,
+    height: 30,
+    borderRadius: 100,
   }
 })
