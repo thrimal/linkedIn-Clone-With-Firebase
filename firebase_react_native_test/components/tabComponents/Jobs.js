@@ -59,7 +59,7 @@ export default class Jobs extends Component {
                         <Text style={styles.txt3}>Land your dream role</Text>
                         <Image
                             style={styles.img2}
-                            source={require('../assets/job.jpg')}
+                            source={require('../../assets/job.jpg')}
                         />
                         <Text style={styles.txt4}>Get notified when new jobs match your preferd title and location</Text>
                         <Button style={styles.btn1} onPress={this.onPressBtnSignOut}>
@@ -73,7 +73,7 @@ export default class Jobs extends Component {
 
                                 <Image
                                     style={styles.img3}
-                                    source={require('../assets/xda.jpg')}
+                                    source={require('../../assets/xda.jpg')}
                                 />
                                 <Text style={styles.txt6}>Software Engineer</Text>
                                 <Text style={styles.txt7}>XDA Developers.co</Text>
@@ -82,7 +82,7 @@ export default class Jobs extends Component {
                                 <Text style={styles.txt10}>  5 aplicants  </Text>
                                     <Image
                                         style={styles.img4}
-                                        source={require('../assets/linkedin.png')}
+                                        source={require('../../assets/linkedin.png')}
                                     />
                                     <Text>  Easy Apply</Text>
                                 </Text>

@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 import { } from 'react-native-gesture-handler'
 import { createStackNavigator } from '@react-navigation/stack';
-import SignIn from '../components/SignIn';
 import TabNavigator from './TabNavigator';
 import Splash from '../screens/Splash';
-import SignUp from '../components/SignUp';
+import SignUp from '../components/stackComponents/SignUp';
+import SignIn from '../components/stackComponents/SignIn'
 
 const Stack = createStackNavigator();
 

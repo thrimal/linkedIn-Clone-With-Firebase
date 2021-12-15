@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
-import auth from '@react-native-firebase/auth';
-import { KeyboardAvoidingView } from 'react-native';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import { SocialIcon } from 'react-native-elements';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 GoogleSignin.configure({
     webClientId: '749647949105-uensqqlq3u3q9to8og5smhosiuovo0na.apps.googleusercontent.com',
@@ -20,16 +20,26 @@ export default class SignUp extends Component {
         };
     }
 
+    saveUserName = async (name) => {
+        AsyncStorage.setItem('name', name);
+        console.log(name);
+    }
+
     registerUser = () => {
+        const { navigate } = this.props.navigation;
         if (this.state.userName != '' && this.state.password != '' && this.state.email != '') {
             auth()
                 .createUserWithEmailAndPassword(this.state.email, this.state.password)
-                .then((createdUser) => {
-                    createdUser.user.updateProfile({
+                .then(async (createdUser) => {
+                    await createdUser.user.updateProfile({
                         displayName: this.state.userName
                     })
-                    console.log('User account created & signed up!');
-                    navigate('TabNavigator', { name: 'TabNavigator' })
+                    auth().onAuthStateChanged((user)=>{
+                        console.log(user);
+                        console.log('User account created & signed up! ' + user.displayName);
+                        navigate('TabNavigator', { name: 'TabNavigator' });
+                        this.saveUserName(user.displayName);
+                    })
                 })
                 .catch(error => {
                     if (error.code === 'auth/email-already-in-use') {
@@ -60,6 +70,8 @@ export default class SignUp extends Component {
         navigate('TabNavigator', { name: 'TabNavigator' })
         console.log('User account created & signed in!');
         console.log((await user).user);
+        let usrName = (await user).user.displayName;
+        this.saveUserName(usrName);
     }
 
     render() {
@@ -67,7 +79,7 @@ export default class SignUp extends Component {
         return (
             <KeyboardAvoidingView style={styles.container}>
                 <View>
-                    <Image style={styles.img} source={require('../assets/linkedin.png')} />
+                    <Image style={styles.img} source={require('../../assets/linkedin.png')} />
                 </View>
                 <Text style={styles.label}> Join LinkedIn Now </Text>
                 <TextInput
@@ -94,23 +106,21 @@ export default class SignUp extends Component {
                     onChangeText={text => this.setState(
                         { password: text }
                     )}
+                    secureTextEntry={true}
                     style={styles.input}
                 />
 
                 <Button mode="contained" onPress={this.registerUser} style={styles.btnSignUp}>
-                    Continue
-                 </Button>
-                {/* <Button icon="step-backward" mode="contained" onPress={() => navigate('SignIn', { name: 'SignIn' })} style={styles.btnSignIn}>
-                    SignIn
-                 </Button> */}
+                    <Text style={{ fontSize: 18 }}>Continue</Text>
+                </Button>
                 <SocialIcon title='Sign In With Google' button type='google' style={{ width: 300, height: 50, position: 'absolute', top: 500, }}
                     onPress={this.onGoogleButtonPress} />
 
-                <TouchableOpacity 
+                <TouchableOpacity
                     onPressOut={() => navigate('SignIn', { name: 'SignIn' })}
                 >
-                    <Text style={{color:'black',fontSize:15,top:170,right:30}}> Already have an account ?</Text>
-                    <Text style={{color:'blue',fontSize:16,top:150,left:140}}> Sign in</Text>
+                    <Text style={{ color: 'black', fontSize: 15, top: 170, right: 30 }}> Already have an account ?</Text>
+                    <Text style={{ color: 'blue', fontSize: 16, top: 150, left: 140 }}> Sign in</Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
         );

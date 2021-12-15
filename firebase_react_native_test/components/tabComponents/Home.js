@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, SafeAreaView, FlatList } from 'react-native';
+import { View, Text, Image, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import firestore from '@react-native-firebase/firestore';
@@ -24,7 +24,8 @@ export default class Home extends Component {
           urls.push({
             url: documentSnapshot.data().url,
             caption: documentSnapshot.data().caption,
-            date:documentSnapshot.data().date
+            date:documentSnapshot.data().date,
+            userName:documentSnapshot.data().userName,
           });
         });
 
@@ -45,8 +46,8 @@ export default class Home extends Component {
               style={styles.userImg}
               source={pp}
             />
-            <Text style={styles.userName}>Thrimal Avishka</Text>
-            <Text style={styles.description}>Software Engineer at XDA (Pvt) Ltd</Text>
+            <Text style={styles.userName}>{item.userName}</Text>
+            <Text style={styles.description}>Software Engineer at Wixis360 (Pvt) Ltd</Text>
             <Text style={styles.date}>{item.date}</Text>
             <FeatherIcon style={styles.icon} name="more-vertical" color={'#666666'} size={21} />
             <Text style={styles.caption}>{item.caption}</Text>

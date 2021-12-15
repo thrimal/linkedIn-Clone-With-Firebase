@@ -48,7 +48,7 @@ export default class MyNetwork extends Component {
                         </View>
                         <Text style={styles.text}> People you may know </Text>
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/man1.png')} />
+                            <Image style={styles.userImage} source={require('../../assets/man1.png')} />
                             <Text style={styles.userName}>Dan</Text>
                             <Text style={styles.description}>Software Engineer at Microsoft (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
@@ -56,7 +56,7 @@ export default class MyNetwork extends Component {
                         </View>
 
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/girl.png')} />
+                            <Image style={styles.userImage} source={require('../../assets/girl.png')} />
                             <Text style={styles.userName}>Sara</Text>
                             <Text style={styles.description}>HR at XDA (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
@@ -64,7 +64,7 @@ export default class MyNetwork extends Component {
                         </View>
 
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/man2.png')} />
+                            <Image style={styles.userImage} source={require('../../assets/man2.png')} />
                             <Text style={styles.userName}>Jhon</Text>
                             <Text style={styles.description}>Associate Software Engineer at XDA (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
@@ -72,7 +72,7 @@ export default class MyNetwork extends Component {
                         </View>
 
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/girl2.png')} />
+                            <Image style={styles.userImage} source={require('../../assets/girl2.png')} />
                             <Text style={styles.userName}>Kara</Text>
                             <Text style={styles.description}>Software Engineer at Microsoft (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
@@ -80,7 +80,7 @@ export default class MyNetwork extends Component {
                         </View>
 
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/girl3.png')} />
+                            <Image style={styles.userImage} source={require('../../assets/girl3.png')} />
                             <Text style={styles.userName}>Diana</Text>
                             <Text style={styles.description}>Software Engineer at XDA (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>
@@ -88,7 +88,7 @@ export default class MyNetwork extends Component {
                         </View>
 
                         <View style={styles.notificationContainer}>
-                            <Image style={styles.userImage} source={require('../assets/man3.png')} />
+                            <Image style={styles.userImage} source={require('../../assets/man3.png')} />
                             <Text style={styles.userName}>Tony</Text>
                             <Text style={styles.description}>Software Engineer at XDA (Pvt) Ltd</Text>
                             <Button style={styles.connectBtn} mode='contained' onPress={this.onConnectBtnPressed}>Connect</Button>

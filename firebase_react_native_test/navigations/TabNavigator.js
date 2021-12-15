@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
-import Home from '../components/Home';
-import AllCustomers from '../components/AllCustomers';
-import Notification from '../components/Notification';
-import MyNetwork from '../components/MyNetwork';
-import AddPost from '../components/AddPost';
-import Jobs from '../components/Jobs';
-
+import Home from '../components/tabComponents/Home';
+import MyNetwork from '../components/tabComponents/MyNetwork';
+import AddPost from '../components/tabComponents/AddPost';
+import Notification from '../components/tabComponents/Notification';
+import Jobs from '../components/tabComponents/Jobs';
 
 const Tab = createBottomTabNavigator();
 
